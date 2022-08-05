@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iuturano <iuriturano@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iuturano <iuturano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:03:46 by iuturano          #+#    #+#             */
-/*   Updated: 2022/08/03 15:25:33 by iuturano         ###   ########.fr       */
+/*   Updated: 2022/08/04 23:35:28 by iuturano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	ft_print_char(int c)
 {

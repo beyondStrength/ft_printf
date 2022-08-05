@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex.c                                     :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iuturano <iuriturano@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iuturano <iuturano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/03 17:16:16 by iuturano          #+#    #+#             */
-/*   Updated: 2022/08/03 19:20:15 by iuturano         ###   ########.fr       */
+/*   Created: 2022/08/03 14:05:24 by iuturano          #+#    #+#             */
+/*   Updated: 2022/08/04 23:35:30 by iuturano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
-int	ft_print_hex(int nbr, char caps)
+int	ft_print_str(char *str)
 {
-	char	*str;
-	int		len;
-
-	if (nbr < 0)
+	if (!str)
 	{
-		nbr *= -1;
-		ft_putchar_fd('-', 1);
-		len++;
+		ft_putstr_fd("(null)", 1);
+		return (6);
 	}
-	str = ft_hex_to_str(nbr);
-	len = ft_strlen(str);
-	if (caps == 'X')
-		ft_str_toupper(str);
 	ft_putstr_fd(str, 1);
-	free(str);
-	return (len);
+	return (ft_strlen(str));
 }

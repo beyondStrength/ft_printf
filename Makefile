@@ -3,53 +3,60 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iuturano <iuriturano@student.42.fr>        +#+  +:+       +#+         #
+#    By: iuturano <iuturano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/28 20:58:59 by iuturano          #+#    #+#              #
-#    Updated: 2022/08/03 15:19:49 by iuturano         ###   ########.fr        #
+#    Created: 2022/08/04 23:34:11 by iuturano          #+#    #+#              #
+#    Updated: 2022/08/04 23:34:11 by iuturano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libftprintf.a
-LIBFT		= src
-OBJ_DIR		= obj/
-CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
-RM			= rm -f
-AR			= ar rcs
+C = clang
 
-SRC_FILES	=	ft_printf ft_args_controller ft_print_char ft_print_str ft_print_int ft_print_uint ft_print_hex
+NAME = libftprintf.a
 
-SRC 		= 	$(addsuffix .c, $(SRC_FILES))
-OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+FLAGS = -Wall -Wextra -Werror -O2
 
-OBJF		=	.cache_exists
+LIBFT = libft
 
-all:		$(NAME)
+HEADER = include
 
-$(NAME):	$(OBJ)
-			@make -C $(LIBFT)
-			@cp src/libft.a .
-			@mv libft.a $(NAME)
-			@$(AR) $(NAME) $(OBJ)
+SOURCES = ft_printf.c \
+	src/ft_args_controller.c \
+	src/ft_print_char.c \
+	src/ft_print_hex.c \
+	src/ft_print_int.c \
+	src/ft_print_pointer.c \
+	src/ft_print_str.c \
+	src/ft_print_uint.c \
+	src/utils.c
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			@$(CC) $(CFLAGS) $(LIBFT) -c $< -o $@
+SRCS = $(SOURCES)
 
-$(OBJF):
-			@mkdir -p $(OBJ_DIR)
+OBJS = $(SOURCES:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@make -C $(LIBFT)
+	@cp libft/libft.a ./$(NAME)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+
+norme:
+	norminette ./libft/
+	@echo
+	norminette ./$(HEADER)/
+	@echo
+	norminette ./$(DIR_S)/
 
 clean:
-			@$(RM) -rf $(OBJ_DIR)
-			@make clean -C $(LIBFT)
+	@rm -f $(OBJS)
+	@make clean -C $(LIBFT)
 
-fclean:		clean
-			@$(RM) -f $(NAME)
-			@$(RM) -f $(LIBFT)/libft.a
+fclean: clean
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT)
 
-re:			fclean all
+re: fclean all
 
-norm:
-			@norminette $(SRC) $(LIBFT) | grep -v Norme -B1 || true
-
-.PHONY:		all clean fclean re norm
+.PHONY: all norme clean fclean re

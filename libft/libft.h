@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iuturano <iuriturano@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iuturano <iuturano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 21:28:08 by iuturano          #+#    #+#             */
-/*   Updated: 2022/06/23 00:35:36 by iuturano         ###   ########.fr       */
+/*   Updated: 2022/08/04 22:10:08 by iuturano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 char	*ft_itoa(int n);
+char	*ft_utoa(unsigned int n);
 char	**ft_split(const char *s, char charset);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);

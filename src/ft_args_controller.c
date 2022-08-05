@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_args_controller.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iuturano <iuriturano@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iuturano <iuturano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:40:14 by iuturano          #+#    #+#             */
-/*   Updated: 2022/08/03 19:25:47 by iuturano         ###   ########.fr       */
+/*   Updated: 2022/08/04 23:35:27 by iuturano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	ft_args_controller(const char *str, va_list args)
 {
@@ -23,10 +23,10 @@ int	ft_args_controller(const char *str, va_list args)
 	if (*str == 'd' || *str == 'i')
 		return (ft_print_int(va_arg(args, int)));
 	if (*str == 'u')
-		return (/*unsigned int routine*/0);
+		return (ft_print_uint(va_arg(args, unsigned int)));
 	if (*str == 'x' || *str == 'X')
 		return (ft_print_hex(va_arg(args, unsigned int), *str));
 	if (*str == '%')
-		return (/*char routine*/0);
+		return (ft_print_char('%'));
 	return (0);
 }

@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iuturano <iuturano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 16:04:37 by iuturano          #+#    #+#             */
-/*   Updated: 2022/08/04 23:29:31 by iuturano         ###   ########.fr       */
+/*   Created: 2022/08/03 16:18:58 by iuturano          #+#    #+#             */
+/*   Updated: 2022/08/04 23:35:29 by iuturano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include "../include/ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_print_int(int nbr)
 {
-	va_list	args;
-	int		output_len;
+	char	*str;
+	int		len;
 
-	va_start(args, str);
-	output_len = 0;
-	while (*str)
-	{
-		if (*str == '%' && ft_strchr("cspdiuxX%", *(str + 1)))
-			output_len += ft_args_controller(++str, args);
-		else
-			output_len += ft_print_char(*str);
-		str++;
-	}
-	va_end(args);
-	return (output_len);
+	str = ft_itoa(nbr);
+	len = ft_strlen(str);
+	ft_putstr_fd(str, 1);
+	free(str);
+	return (len);
 }

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_print_uint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iuturano <iuriturano@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iuturano <iuturano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/03 14:05:24 by iuturano          #+#    #+#             */
-/*   Updated: 2022/08/03 15:59:27 by iuturano         ###   ########.fr       */
+/*   Created: 2022/08/04 21:59:00 by iuturano          #+#    #+#             */
+/*   Updated: 2022/08/04 23:35:31 by iuturano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
-int	ft_print_str(char *str)
+int	ft_print_uint(unsigned int nbr)
 {
-	if (!str)
-	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
+	char	*str;
+	int		len;
+
+	str = ft_utoa(nbr);
+	len = ft_strlen(str);
 	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	free(str);
+	return (len);
 }
